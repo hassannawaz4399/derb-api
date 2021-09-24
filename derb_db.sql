@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 24, 2021 at 07:50 AM
+-- Generation Time: Sep 24, 2021 at 10:55 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.10
 
@@ -69,6 +69,122 @@ CREATE TABLE `digital_sub_category` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `invoice`
+--
+
+CREATE TABLE `invoice` (
+  `no` int(11) NOT NULL,
+  `invoice` int(11) NOT NULL,
+  `data` date NOT NULL,
+  `shipping` double NOT NULL,
+  `amount` double NOT NULL,
+  `tax` double NOT NULL,
+  `total` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `listcoupons`
+--
+
+CREATE TABLE `listcoupons` (
+  `id` int(11) NOT NULL,
+  `title` varchar(500) NOT NULL,
+  `code` varchar(100) NOT NULL,
+  `discount` int(11) NOT NULL,
+  `status` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `listmenu`
+--
+
+CREATE TABLE `listmenu` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `status` varchar(200) NOT NULL,
+  `creat_on` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `listpages`
+--
+
+CREATE TABLE `listpages` (
+  `id` int(11) NOT NULL DEFAULT 0,
+  `name` varchar(100) NOT NULL,
+  `status` varchar(200) NOT NULL,
+  `creat_on` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `listvendors`
+--
+
+CREATE TABLE `listvendors` (
+  `id` int(11) NOT NULL,
+  `vendor` varchar(200) NOT NULL,
+  `products` int(11) NOT NULL,
+  `store_name` varchar(200) NOT NULL,
+  `create_date` datetime NOT NULL DEFAULT current_timestamp(),
+  `w_balance` double NOT NULL,
+  `revenue` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `media`
+--
+
+CREATE TABLE `media` (
+  `id` int(11) NOT NULL,
+  `image` int(11) NOT NULL,
+  `filename` int(11) NOT NULL,
+  `url` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `order_id` int(11) NOT NULL,
+  `image` varchar(500) NOT NULL,
+  `status` varchar(200) NOT NULL,
+  `payment_method` varchar(100) NOT NULL,
+  `order_status` varchar(200) NOT NULL,
+  `date` datetime NOT NULL,
+  `total` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `physical_list`
+--
+
+CREATE TABLE `physical_list` (
+  `image` varchar(50) NOT NULL,
+  `title` varchar(100) NOT NULL,
+  `price` double NOT NULL,
+  `discount_price` double NOT NULL,
+  `tag` varchar(50) NOT NULL,
+  `discount` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `sub_category`
 --
 
@@ -122,6 +238,36 @@ ALTER TABLE `category`
   ADD UNIQUE KEY `UniqueCategory` (`image`);
 
 --
+-- Indexes for table `listcoupons`
+--
+ALTER TABLE `listcoupons`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `listmenu`
+--
+ALTER TABLE `listmenu`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `listvendors`
+--
+ALTER TABLE `listvendors`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `media`
+--
+ALTER TABLE `media`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`order_id`);
+
+--
 -- Indexes for table `translation`
 --
 ALTER TABLE `translation`
@@ -143,6 +289,36 @@ ALTER TABLE `user`
 --
 ALTER TABLE `category`
   MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `listcoupons`
+--
+ALTER TABLE `listcoupons`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `listmenu`
+--
+ALTER TABLE `listmenu`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `listvendors`
+--
+ALTER TABLE `listvendors`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `media`
+--
+ALTER TABLE `media`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `user`
